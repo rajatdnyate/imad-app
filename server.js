@@ -11,7 +11,7 @@ app.get('/', function (req, res) {
 
 
 app.get('/Electromania', function(req,res)  { 
-res.sendFile(path.join(__dirname, 'ui', 'Electromania.html'));
+res.sendFile(path.join(__dirname, 'imad-app', 'Electromania.html'));
 });
 
 app.get('/ui/style.css', function (req, res) {

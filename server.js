@@ -8,8 +8,10 @@ app.use(morgan('combined'));
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
+
 app.get('/Electromania', function (req, res) {
- res.sendFile(path.join(__dirname, 'ui', 'Electromani.html')); });
+ res.sendFile(path.join(__dirname, 'ui', 'Electromania.html'));
+ });
 
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));

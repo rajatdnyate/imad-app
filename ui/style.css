@@ -5,11 +5,11 @@ body {
 }
 
 .center {
-    text-align: center;
+    text-align:right;
 }
 
 .text-big {
-    font-size: 300%;
+    font-size: 800%;
 }
 
 .bold {

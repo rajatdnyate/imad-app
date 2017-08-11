@@ -70,7 +70,7 @@ app.get('/', function (req, res) {
 
 
 app.get('/Electromania', function(req,res)  { 
-res.send(createTemplate(Electromania));
+res.send(createTemplate(Electromania EEE));
 });
 
 app.get('/ui/style.css', function (req, res) {

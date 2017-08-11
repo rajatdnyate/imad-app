@@ -1,91 +1,28 @@
-var express = require('express');
-var morgan = require('morgan');
-var path = require('path');
-
-var app = express();
-app.use(morgan('combined'));
-
-
-var Electromania = {
-    title: 'Electromania EEE',
-    heading: ' Electromania',
-    date: 'August 11',
-    content:` <p>
-                 Electromania is a group of 5 engineering students. studying in final year of engineering of electrical and electronics engineering in MIT aurangabad.
-            </p>
-            <p>
-                 Electromania is a group of 5 engineering students. studying in final year of engineering of electrical and electronics engineering in MIT aurangabad.
-            </p>
-            <p>
-                 Electromania is a group of 5 engineering students. studying in final year of engineering of electrical and electronics engineering in MIT aurangabad.
-            </p>`
-};
-
-function createTemplate (data) {
-   var title = data.title;
-    var date = data.date;
-    var heading = data.heading;
-    var content = data.content;
-    var htmlTemplate = `
-<html>
-    <head>
-        <title>
-            ${title}
-        </title>
-        <link href="/ui/style.css" rel="stylesheet" />
-        <meta name="viewport" contents="width=device-width, initial-scaled=100"/>
-       </head>
-    <body>
-        <div class="container">
-                <a href="/">Members</a>
-        <hr/>
-        <h3>
-            ${heading}
-        </h3>
-        <div>
-         ${date}   
-    </div>
-        <div>
-           ${content}
-        </div>
-        </div>
-    </body>
-</html>
-`;
-return htmlTemplate;
+body {
+    font-family: times new roman;
+    background-color: skyblue;
+    margin-top: 20px;
 }
 
+.center {
+    text-align:center;
+}
 
+.text-big {
+    font-size: 600%;
+}
 
+.bold {
+    font-weight: bold;
+}
 
-`
-
-
-
-
-
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'index.html'));
-});
-
-
-app.get('/Electromania', function(req,res)  { 
-res.send(createTemplate(Electromania EEE));
-});
-
-app.get('/ui/style.css', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'style.css'));
-});
-
-app.get('/ui/madi.png', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'madi.png'));
-});
-
-
-// Do not change port, otherwise your app won't run on IMAD servers
-// Use 8080 only for local development if you already have apache running on 80
-
-var port = 80;
-app.listen(port, function () {
-  console.log(`IMAD course app listening on port ${port}!`);
-});
+.img-medium {
+    height: 400px;
+}
+        .container {
+               max-width: 800px;
+               margin:0 auto;
+               color: grey;
+               font-family: brahma;
+           }
+    

@@ -20,13 +20,9 @@ var Electromania = {
                  Electromania is a group of 5 engineering students. studying in final year of engineering of electrical and electronics engineering in MIT aurangabad.
             </p>`
 };
-function createTemplate (data) {
-    var title = data.title;
-    var date = data.date;
-    var heading = data.heading;
-    var content = data.content;
 
-var htmlTemplate =`
+function createTemplate (data) {
+   var htmlTemplate =`
 <html>
     <head>
         <title>

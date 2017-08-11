@@ -5,13 +5,73 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
+
+var Electromania = {
+    title: 'Electromania EEE',
+    heading: ' Electromania',
+    date: 'August 11',
+    content:` <p>
+                 Electromania is a group of 5 engineering students. studying in final year of engineering of electrical and electronics engineering in MIT aurangabad.
+            </p>
+            <p>
+                 Electromania is a group of 5 engineering students. studying in final year of engineering of electrical and electronics engineering in MIT aurangabad.
+            </p>
+            <p>
+                 Electromania is a group of 5 engineering students. studying in final year of engineering of electrical and electronics engineering in MIT aurangabad.
+            </p>`
+};
+function createTemplate (data) {
+    var title = data.title;
+    var date = data.date;
+    var heading = data.heading;
+    var content = data.content;
+}
+var htmlTemplate =`<html>
+    <head>
+        <title>
+            ${title}
+        </title>
+        <link href="/ui/style.css" rel="stylesheet" />
+        <meta name="viewport" contents="width=device-width, initial-scaled=100" />
+        <style>
+  
+        </style>
+       </head>
+    <body>
+        <div class="container">
+                <a href="/">Members</a>
+        <hr/>
+        <h3>
+            ${heading}
+        </h3>
+        <div>
+         ${date}   
+    </div>
+        <div>
+           ${content}
+        </div>
+        </div>
+    </body>
+</html>
+`;
+return htmlTemplate;
+
+
+
+
+`
+
+
+
+
+
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
 
 app.get('/Electromania', function(req,res)  { 
-res.sendFile(path.join(__dirname, 'ui', 'Electromania.html'));
+res.send(createTemplate(Electromania));
 });
 
 app.get('/ui/style.css', function (req, res) {

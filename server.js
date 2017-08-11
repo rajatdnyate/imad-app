@@ -26,17 +26,14 @@ function createTemplate (data) {
     var heading = data.heading;
     var content = data.content;
 
-var htmlTemplate =
-`<html>
+var htmlTemplate =`
+<html>
     <head>
         <title>
             ${title}
         </title>
         <link href="/ui/style.css" rel="stylesheet" />
-        <meta name="viewport" contents="width=device-width, initial-scaled=100" />
-        <style>
-  
-        </style>
+        <meta name="viewport" contents="width=device-width, initial-scaled=100"/>
        </head>
     <body>
         <div class="container">

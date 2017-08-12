@@ -5,10 +5,7 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
-var btn = document.createElement("button");
-var t = document.createTextNode("Click me !!");
-btn.appendChild(t);
-document.body.appendChild(btn);
+
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));

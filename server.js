@@ -15,7 +15,7 @@ app.get('/', function (req, res) {
 app.get('/counter', function (req, res) {
      counter = counter + 1;
      res.send(counter.toString());
- })
+ });
  
 app.get('/Electromania', function (req, res) {
  res.sendFile(path.join(__dirname, 'ui', 'Electromania.html')); });

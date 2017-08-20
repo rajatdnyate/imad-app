@@ -1,7 +1,7 @@
 var express = require('express');
 var morgan = require('morgan');
 var path = require('path');
-var Pool = required('pg');
+var Pool = required('pg').Pool;
 
 var config = {
     user: 'rajat_dnyate',
@@ -48,7 +48,7 @@ app.listen(port, function () {
 });
 
 var pool = new Pool(config);
-app.get('/test-db', function (res,req) 
+app.get('/test-db', function (req,res) 
     //make a select request
     //Get the name from the results
     pool.query('SELECT * FROM test', function(err,result) {

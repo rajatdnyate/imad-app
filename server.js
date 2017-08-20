@@ -1,7 +1,7 @@
 var express = require('express');
 var morgan = require('morgan');
 var path = require('path');
-var Pool = required('pg').Pool;
+var Pool = required('pg');
 
 var config = {
     user: 'rajat_dnyate',

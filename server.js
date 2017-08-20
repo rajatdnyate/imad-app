@@ -48,7 +48,7 @@ app.listen(port, function () {
 });
 
 var pool = new Pool(config);
-app.get('/test-db', function (req,res) 
+app.get('/test-db', function (req,res) {
     //make a select request
     //Get the name from the results
     pool.query('SELECT * FROM test', function(err,result) {
@@ -57,5 +57,5 @@ app.get('/test-db', function (req,res)
         } else {
             res.send(JSON.stringify(result));
         }
-    })
-    );
+    });
+    });

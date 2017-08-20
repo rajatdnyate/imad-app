@@ -47,6 +47,7 @@ app.listen(port, function () {
   console.log(`IMAD course app listening on port ${port}!`);
 });
 
+var pool = new Pool(config);
 app.get('/test-db', function (res,req) 
     //make a select request
     //Get the name from the results

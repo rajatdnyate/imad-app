@@ -14,23 +14,7 @@ var config = {
 var app = express();
 app.use(morgan('combined'));
 
- var articles = {
-     'article-one': {
-           title: 'Electromania! Rajat Dnyate'
-           heading: 'Article One',
-           date - 7/8/17
-        content:
-            <p>
-                 Electromania is a group of 5 engineering students. studying in final year of engineering of electrical and electronics engineering in MIT aurangabad.
-            </p>
-            <p>
-                 Electromania is a group of 5 engineering students. studying in final year of engineering of electrical and electronics engineering in MIT aurangabad.
-            </p>
-            <p>
-                 Electromania is a group of 5 engineering students. studying in final year of engineering of electrical and electronics engineering in MIT aurangabad.
-            </p>
-     },
-    
+
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));

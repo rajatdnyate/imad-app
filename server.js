@@ -80,8 +80,8 @@ app.get('/test-db', function (req,res) {
     app.get('/articles/:Electromania', function (req ,res) {
         //articleName == article-one
         // articles[articleName] =={} content for article one
-      
-    pool.query("SELECT * FROM article WHERE title = " + req.params.Electromania, function (err, result) {
+    // SELECT  * FROM article WHERE title = 'article-one'
+    pool.query("SELECT * FROM article WHERE title = '"+ req.params.Electromania + "'", function (err, result) {
         if(err) {
             res.status(500).send(err.toString());
         } else {

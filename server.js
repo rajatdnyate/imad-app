@@ -76,3 +76,22 @@ app.get('/test-db', function (req,res) {
         }
     });
     });
+    
+    app.get('/articles/:Electromania', function (req ,res) {
+        //articleName == article-one
+        // articles[articleName] =={} content for article one
+      
+    pool.query("SELECT * FROM article WHERE title = " + req.params.Electromania, function (err, result) {
+        if(err) {
+            res.status(500).send(err.toString());
+        } else {
+            if (result.rows.length === 0) {
+                res.status(404).send('Article not found');
+            } else {
+               var articleDATA = result.rows[0];
+        res.send(createTemplate(articleData));
+            }
+            }
+        });
+        });
+        

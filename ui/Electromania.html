@@ -1,35 +1,38 @@
-<html>
-    <head>
-        <title>
-            Electromania EEE
-        </title>
-        
-        <meta name="viewport" contents="width=device-width, initial-scaled=100" />
-        
-    <body>
-        <div class="container">
-                <a href="/">Members</a>
-        <hr/>
-        <style>
-            .container {
-            font-family: Times new roman;
-           background-color: skyblue;
-            font-weight:italic;
-            text-align: Center;
-            margin-top: 80px;
-        font-size: 300%;
+var express = require('express');
+var morgan = require('morgan');
+var path = require('path');
+var Pool = require('pg').Pool;
 
-}
-</style>
-        
-        <div class= 'container'>
-        </div>
-        
-        <div>
-            <p>
-                 i'm gonna reply like this now
+var config = {
+    user: 'rajatdnyate',
+    database: 'rajatdnyate',
+    host: 'db.imad.hasura-app.io',
+    port:'5432',
+    password:process.env. DB_PASSWORD
+    
+};
+var app = express();
+app.use(morgan('combined'));
+
+var articles = {
+    'article-one': {
+        title: 'Article One! Rajat Dnyate',
+        heading: 'Article One',
+        date: 'August 21, 2017',
+        content: `
+       <p> Electromania is a group of 5 engineering students. studying in final year of engineering of electrical and electronics engineering in MIT aurangabad.
             </p>
-        </div>
-        </div>
-    </body>
-</html>
+            <p>
+                Electromania is a group of 5 engineering students. studying in final year of engineering of electrical and electronics engineering in MIT aurangabad.
+            </p>
+            <p>
+                 Electromania is a group of 5 engineering students. studying in final year of engineering of electrical and electronics engineering in MIT aurangabad.
+            </p>`
+    }
+};
+
+
+
+
+
+

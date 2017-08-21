@@ -14,6 +14,22 @@ var config = {
 var app = express();
 app.use(morgan('combined'));
 
+var articles = {
+    'article-one': {
+        title: 'Article One! Rajat Dnyate',
+        heading: 'Article One',
+        date: 'August 21, 2017',
+        content: `
+       <p> Electromania is a group of 5 engineering students. studying in final year of engineering of electrical and electronics engineering in MIT aurangabad.</b>
+            </p>
+            <p>
+                Electromania is a group of 5 engineering students. studying in final year of engineering of electrical and electronics engineering in MIT aurangabad.
+            </p>
+            <p>
+                 Electromania is a group of 5 engineering students. studying in final year of engineering of electrical and electronics engineering in MIT aurangabad.
+            </p>`
+    }
+};
 
 
 app.get('/', function (req, res) {

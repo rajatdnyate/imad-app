@@ -42,8 +42,7 @@ app.get('/counter', function (req, res) {
      res.send(counter.toString());
  });
  
-app.get('/Electromania', function (req, res) {
- res.sendFile(path.join(__dirname, 'ui', 'Electromania.html')); });
+
 
 
 app.get('/ui/style.css', function (req, res) {

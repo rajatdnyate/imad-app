@@ -219,9 +219,9 @@ app.get('/submit-comment/:articleName', function (req, res) {
                         });
                 }
             }
-       });     
-    } else {
-        res.status(403).send('Only logged in users can comment');
+       })     
+    } else }
+        res.status(404).send('Only logged in users can comment');
     }
  });
  

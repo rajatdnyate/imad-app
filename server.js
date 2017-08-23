@@ -1,10 +1,10 @@
 var express = require('express');
 var morgan = require('morgan');
 var path = require('path');
-var Pool = require('pg').Pool;
+var Pool = required('pg').Pool;
 
 var config = {
-    user: 'rajatdnyate',
+    user: 'rajat_dnyate',
     database: 'rajatdnyate',
     host: 'db.imad.hasura-app.io',
     port:'5432',
@@ -14,23 +14,7 @@ var config = {
 var app = express();
 app.use(morgan('combined'));
 
- var articles = {
-     'article-one': {
-           title: 'Electromania! Rajat Dnyate'
-           heading: 'Article One',
-           date - 7/8/17
-        content:
-            <p>
-                 Electromania is a group of 5 engineering students. studying in final year of engineering of electrical and electronics engineering in MIT aurangabad.
-            </p>
-            <p>
-                 Electromania is a group of 5 engineering students. studying in final year of engineering of electrical and electronics engineering in MIT aurangabad.
-            </p>
-            <p>
-                 Electromania is a group of 5 engineering students. studying in final year of engineering of electrical and electronics engineering in MIT aurangabad.
-            </p>
-     },
-    
+
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
@@ -55,7 +39,6 @@ app.get('/ui/madi.png', function (req, res) {
 });
 
 
-
 // Do not change port, otherwise your app won't run on IMAD servers
 // Use 8080 only for local development if you already have apache running on 80
 
@@ -65,14 +48,14 @@ app.listen(port, function () {
 });
 
 var pool = new Pool(config);
-app.get('/test-db', function (req,res) {
+app.get('/test-db', function (res,req) 
     //make a select request
     //Get the name from the results
     pool.query('SELECT * FROM test', function(err,result) {
         if (err) {
         res.status(500).send(err.toString());
         } else {
-            res.send(JSON.stringify(result.rows));
+            res.send(JSON.stringify(result));
         }
-    });
-    });
+    })
+    );

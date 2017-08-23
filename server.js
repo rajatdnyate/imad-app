@@ -1,36 +1,87 @@
-var express = require('express');
-var morgan = require('morgan');
-var path = require('path');
+var currentArticleTitle = window.location.pathname.split('/')[2];
 
-var app = express();
-app.use(morgan('combined'));
+function loadCommentForm () {
+    var commentFormHtml = `
+        <h5>Submit a comment</h5>
+        <textarea id="comment_text" placeholder="Enter your comment here..." />
+        <input type="submit" id="submit" value="Submit" />
+        `;
+    document.getElementById('comment_form').innerHTML = loginHtml;
+    
+    // Submit username/password to login
+    var submit = document.getElementById('submit');
+    submit.onclick = function () {
+        // Create a request object
+        var request = new XMLHttpRequest();
+        
+        // Capture the response and store it in a variable
+        request.onreadystatechange = function () {
+          if (request.readyState === XMLHttpRequest.DONE) {
+                // Take some action
+                if (request.status === 200) {
+                    // clear the form & reload all the comments
+                    document.getElementById('comment-text').value = '';
+                    loadComments();    
+                }
+                submit.value = 'Submit';
+          }
+        };
+        
+        // Make the request
+        var comment = document.getElementById('comment_text').value;
+        request.open('POST', '/submit-comment/' + currentArticleTitle, true);
+        request.setRequestHeader('Content-Type', 'application/json');
+        request.send(JSON.stringify({comment: comment}));  
+        submit.value = 'Submitting...';
+        
+    };
+}
 
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'index.html'));
-});
+function loadLogin () {
+    // Check if the user is already logged in
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function () {
+        if (request.readyState === XMLHttpRequest.DONE) {
+            if (request.status === 200) {
+                loadCommentForm(this.responseText);
+            }
+        }
+    };
+    
+    request.open('GET', '/check-login', true);
+    request.send(null);
+}
 
-app.get('/article-one', function (req, res) {
-    res.send('Article one requested and will be served here');    
-});
+function loadComments () {
+        // Check if the user is already logged in
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function () {
+        if (request.readyState === XMLHttpRequest.DONE) {
+            var comments = document.getElementById('comments');
+            if (request.status === 200) {
+                var content = '';
+                var commentsData = JSON.parse(this.responseText);
+                for (var i=0; i< commentsData.length; i++) {
+                    var time = new Date(commentsData[i].timestamp);
+                    content += `<div class="comment">
+                        <p>${commentsData[i].comment}</p>
+                        <div class="commenter">
+                            ${commentsData[i].username} - ${time.toLocaleTimeString()} on ${time.toLocaleDateString()} 
+                        </div>
+                    </div>`;
+                }
+                comments.innerHTML = content;
+            } else {
+                comments.innerHTML('Oops! Could not load comments!');
+            }
+        }
+    };
+    
+    request.open('GET', '/get-comments/' + currentArticleTitle, true);
+    request.send(null);
+}
 
-app.get('/article-two', function (req, res) {
-    res.send('Article two requested and will be served here');    
-});
 
-app.get('/article-three', function (req, res) {
-    res.send('Article three requested and will be served here');    
-});
-
-app.get('/ui/style.css', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'style.css'));
-});
-
-app.get('/ui/madi.png', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'madi.png'));
-});
-
-
-var port = 8080; // Use 8080 for local development because you might already have apache running on 80
-app.listen(8080, function () {
-  console.log(`IMAD course app listening on port ${port}!`);
-});
+// The first thing to do is to check if the user is logged in!
+loadLogin();
+loadComments();

@@ -1,87 +1,78 @@
-var currentArticleTitle = window.location.pathname.split('/')[2];
+var express = require('express');
+var morgan = require('morgan');
+var path = require('path');
+var Pool = require('pg').Pool;
 
-function loadCommentForm () {
-    var commentFormHtml = `
-        <h5>Submit a comment</h5>
-        <textarea id="comment_text" placeholder="Enter your comment here..." />
-        <input type="submit" id="submit" value="Submit" />
-        `;
-    document.getElementById('comment_form').innerHTML = loginHtml;
+var config = {
+    user: 'rajatdnyate',
+    database: 'rajatdnyate',
+    host: 'db.imad.hasura-app.io',
+    port:'5432',
+    password:process.env. DB_PASSWORD
     
-    // Submit username/password to login
-    var submit = document.getElementById('submit');
-    submit.onclick = function () {
-        // Create a request object
-        var request = new XMLHttpRequest();
-        
-        // Capture the response and store it in a variable
-        request.onreadystatechange = function () {
-          if (request.readyState === XMLHttpRequest.DONE) {
-                // Take some action
-                if (request.status === 200) {
-                    // clear the form & reload all the comments
-                    document.getElementById('comment-text').value = '';
-                    loadComments();    
-                }
-                submit.value = 'Submit';
-          }
-        };
-        
-        // Make the request
-        var comment = document.getElementById('comment_text').value;
-        request.open('POST', '/submit-comment/' + currentArticleTitle, true);
-        request.setRequestHeader('Content-Type', 'application/json');
-        request.send(JSON.stringify({comment: comment}));  
-        submit.value = 'Submitting...';
-        
-    };
-}
+};
+var app = express();
+app.use(morgan('combined'));
 
-function loadLogin () {
-    // Check if the user is already logged in
-    var request = new XMLHttpRequest();
-    request.onreadystatechange = function () {
-        if (request.readyState === XMLHttpRequest.DONE) {
-            if (request.status === 200) {
-                loadCommentForm(this.responseText);
-            }
+ var articles = {
+     'article-one': {
+           title: 'Electromania! Rajat Dnyate'
+           heading: 'Article One',
+           date - 7/8/17
+        content:
+            <p>
+                 Electromania is a group of 5 engineering students. studying in final year of engineering of electrical and electronics engineering in MIT aurangabad.
+            </p>
+            <p>
+                 Electromania is a group of 5 engineering students. studying in final year of engineering of electrical and electronics engineering in MIT aurangabad.
+            </p>
+            <p>
+                 Electromania is a group of 5 engineering students. studying in final year of engineering of electrical and electronics engineering in MIT aurangabad.
+            </p>
+     },
+    
+
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'index.html'));
+});
+
+ var counter = 0;
+app.get('/counter', function (req, res) {
+     counter = counter + 1;
+     res.send(counter.toString());
+ });
+ 
+app.get('/Electromania', function (req, res) {
+ res.sendFile(path.join(__dirname, 'ui', 'Electromania.html')); });
+
+
+app.get('/ui/style.css', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'style.css'));
+});
+
+app.get('/ui/madi.png', function (req, res) {
+  res.sendFile(path.join(__dirname, 'ui', 'madi.png'));
+});
+
+
+
+// Do not change port, otherwise your app won't run on IMAD servers
+// Use 8080 only for local development if you already have apache running on 80
+
+var port = 80;
+app.listen(port, function () {
+  console.log(`IMAD course app listening on port ${port}!`);
+});
+
+var pool = new Pool(config);
+app.get('/test-db', function (req,res) {
+    //make a select request
+    //Get the name from the results
+    pool.query('SELECT * FROM test', function(err,result) {
+        if (err) {
+        res.status(500).send(err.toString());
+        } else {
+            res.send(JSON.stringify(result.rows));
         }
-    };
-    
-    request.open('GET', '/check-login', true);
-    request.send(null);
-}
-
-function loadComments () {
-        // Check if the user is already logged in
-    var request = new XMLHttpRequest();
-    request.onreadystatechange = function () {
-        if (request.readyState === XMLHttpRequest.DONE) {
-            var comments = document.getElementById('comments');
-            if (request.status === 200) {
-                var content = '';
-                var commentsData = JSON.parse(this.responseText);
-                for (var i=0; i< commentsData.length; i++) {
-                    var time = new Date(commentsData[i].timestamp);
-                    content += `<div class="comment">
-                        <p>${commentsData[i].comment}</p>
-                        <div class="commenter">
-                            ${commentsData[i].username} - ${time.toLocaleTimeString()} on ${time.toLocaleDateString()} 
-                        </div>
-                    </div>`;
-                }
-                comments.innerHTML = content;
-            } else {
-                comments.innerHTML('Oops! Could not load comments!');
-            }
-        }
-    };
-    
-    request.open('GET', '/get-comments/' + currentArticleTitle, true);
-    request.send(null);
-}
-
-
-// The first thing to do is to check if the user is logged in!
-loadLogin();
-loadComments();
+    });
+    });

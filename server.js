@@ -10,7 +10,7 @@ var articles = {
     title: 'Article One ! Rajat Dnyate',
     heading: 'Article One',
     date: 'August 28 2017',
-    content:` '   <p>
+    content:`    <p>
         This is the content of my first article.This is the content of my first article.This is the content of my first article.This is the content of my first article.This is the content of my first article.This is the content of my first article.This is the content of my first article.This is the content of my first article.This is the content of my first article.
         </p>
         <p> This is the content of my first article.This is the content of my first article.This is the content of my first article.This is the content of my first article.This is the content of my first article.This is the content of my first article.This is the content of my first article.This is the content of my first article.This is the content of my first article.

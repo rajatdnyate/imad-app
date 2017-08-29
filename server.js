@@ -86,6 +86,15 @@ app.get('/counter', function (req,res) {
     counter = counter+1;
     res.send(counter.toString());
 });
+var names = [];
+app.get('/submit-name', function(req,res){ // URL: /submit-name?name=xxx
+    //Get the name from the request
+    var name = req.query.name;
+    
+    names.push(name);
+    //JSON: javascript object notation
+    res.send(JSON.stringify(names));
+});
 app.get('/:articleName', function (req,res){
     //articleName == article-one
     //articles[articleName] == {} content object for article one
@@ -109,15 +118,7 @@ app.get('/ui/madi.png', function (req, res) {
 
 // Do not change port, otherwise your app won't run on IMAD servers
 // Use 8080 only for local development if you already have apache running on 80
-var names = [];
-app.get('/submit-name', function(req,res){ // URL: /submit-name?name=xxx
-    //Get the name from the request
-    var name = req.query.name;
-    
-    names.push(name);
-    //JSON: javascript object notation
-    res.send(JSON.stringify(names));
-});
+
 var port = 80;
 app.listen(port, function () {
   console.log(`IMAD course app listening on port ${port}!`);

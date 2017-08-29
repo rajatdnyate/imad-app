@@ -31,7 +31,7 @@ var articles = {
  },
  'article-three':{
       title: 'Article Three ! Rajat Dnyate',
-    heading: 'Conclusion',
+    heading: 'Article Three',
     date: 'August 28 2017',
     content:` 
         <p>

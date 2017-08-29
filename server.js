@@ -30,11 +30,11 @@ var articles = {
  },
  'article-three':{
       title: 'Article Three ! Rajat Dnyate',
-    heading: 'Article Three',
-    date: 'August 31 2017',
+    heading: 'Conclusion',
+    date: 'August 28 2017',
     content:` 
         <p>
-       This is the content for my third article.
+     The above provided information clearly says that Quadcopter is a versatile & probably the future of inventions in the field of UAV's. Applications from continous monitoring over a high alert place to using it as a soldier in a war zone is possibe. Due to high cost of it, the use of Quadcopter is only in somefields. But with the world moving forward there is a big & bright future of Quadcopters for sure. 
          </p>`
  }
 };

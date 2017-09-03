@@ -122,7 +122,7 @@ app.get('/articles/:articleName', function(req,res) {
     //articleName == article-one
     //articles[articleName] == {} content object for article one
     
-    //SELECT * FROMarticle WHERE title = 'article-one'
+    //SELECT * FROMarticle WHERE title = ''; DELETE WHEREa = 'asdf' 
     pool.query("SELECT * FROM article WHERE title = '" + req.params.articleName + "'", function (err, result) {
         if (err) {
             result.status(500).send(err.toString());
